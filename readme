@@ -1,0 +1,21 @@
+db = sisdeec
+user = sisdeec
+pass = sisdeec
+django = 1.10.4
+postgres = 9.4
+
+*crear super usuario
+
+python3 manage.py createsuperuser
+
+*crear las migraciones
+
+python3 manage.py makemigrations
+
+*Pasar las migraciones a la BD
+
+python3 manage.py migrate
+
+*Correr el servidor de pruebas
+
+python3 manage.py runserver
