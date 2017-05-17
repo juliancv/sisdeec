@@ -1,12 +1,33 @@
 from django import forms
 from .models import *
 
+class LoginForm(forms.Form):
 
+    usuario     = forms.CharField(required = True)
+    password    = forms.CharField(required = True, widget = forms.PasswordInput)
+
+    usuario.widget.attrs.update({ 'id' : 'id_usuario',
+                                'class': 'form-control',
+                                'name' : 'Nombres',
+                                'placeholder' : 'Ingrese su usuario',
+                                'type' : 'text'})
+
+    password.widget.attrs.update({ 'id' : 'id_password',
+                                'class': 'form-control',
+                                'name' : 'Password',
+                                'placeholder' : 'Ingrese su contraseña',
+                                'type' : 'text'})
 
 class PersonaForm(forms.Form):
 
-    OFICINAS = ((1, u'Programa Egresados'), (2, u'Programa Emprendedores'), (3, u'Practicas & pasantias'), (4, u'Educacion continua'),(5, u'Proyectos'),(6, u'Pilos'), (7, u'DEEC'),)
-    OPT_USR = ((1, u'General'),(2, u'Monitor'))
+    OFICINAS = (('Programa Egresados', u'Programa Egresados'),
+                ('Programa Emprendedores', u'Programa Emprendedores'),
+                 ('Practicas & pasantias', u'Practicas & pasantias'),
+                 ('Educacion continua', u'Educacion continua'),
+                 ('Proyectos', u'Proyectos'),
+                 ('Pilos', u'Pilos'),
+                  ('DEEC', u'DEEC'),)
+    OPT_USR = (('General', u'General'),('Monitor', u'Monitor'))
 
     nombres         = forms.CharField( required = True )
     apellidos       = forms.CharField( required = True )

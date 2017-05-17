@@ -12,7 +12,7 @@ class Persona(models.Model):
     telefono    = models.BigIntegerField()
     estado      = models.BooleanField(default = True)
     correo      = models.EmailField()
-    Area_oficina = models.CharField(max_length = 40)
+    area_oficina = models.CharField(max_length = 40)
     usuario     = models.ForeignKey(User, null=True)
 
     def __str__(self):

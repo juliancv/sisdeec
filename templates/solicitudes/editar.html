@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% block contenido %}
+
+<section class="content">
+    <div class="container">
+      <div class="col-lg-10 col-lg-offset-1">
+          <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                  <h2>Editar Solicitud</h2>
+              </div>
+
+              <div class="ibox-content">
+                  <div class="row">
+                      <div class="col-md-10 col-md-offset-1">
+                          <form action="" method="POST" class="form-horizontal" enctype="multipart/form-data" id="actividad_editar_form">
+                          {% csrf_token %}
+
+                          <div class="form-group">
+                                <label class="control-label" for="id_titulo">Titulo</label>
+                                <input class="form-control" disabled="disabled" id="id_titulo" name="titulo" type="text" value="{{actividad.titulo}}">
+                          </div>
+
+                          <div class="form-group">
+                                <label class="control-label" for="id_resumen">Resumen</label>
+                                <input class="form-control" disabled="disabled" id="id_resumen" name="resumen" type="text" value="{{actividad.resumen}}">
+                          </div>
+
+                          <div class="form-group">
+                                <label class="control-label" for="id_responsable">Responsable</label>
+
+                                <select id = "id_responsable" name="id_reponsable", class= "form-control">
+                                    {% for responsable in responsables %}
+                                    <option value = {{responsable.identificacion}}> {{responsable}}</option>
+                                    {% endfor %}
+                                </select>
+
+                          </div>
+                          <div class="form-group">
+                            <label class = "control-label" for = "id_prioridad"  >Prioridad asignada</label>
+                            {{ actividad_form_editar.prioridad}}
+                          </div>
+
+                          <div class="form-group">
+                            <label class = "control-label" for = "id_estado"  >Estado</label>
+                            {{ actividad_form_editar.estado}}
+                          </div>
+
+                          <div class="form-group">
+                            <label class = "control-label" for = "id_comentarios"  >Comentarios </label>
+                            {{ actividad_form_editar.comentarios}}
+                          </div>
+
+                          <center> {% bootstrap_button "Actualizar" button_type="submit" button_class="btn-primary"%} </center>
+
+                          </form>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock contenido %}

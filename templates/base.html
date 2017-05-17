@@ -79,10 +79,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="/usuarios/logout/" class="btn btn-default btn-flat">Salir</a>
                 </div>
               </li>
             </ul>
@@ -119,22 +119,22 @@
           </a>
           <ul class="treeview-menu">
             <li class="active">
-              <a href="#">
+              <a href="/solicitudes/nueva_solicitud/">
                 <i class="fa fa-circle-o"></i> Nuevas
               </a>
             </li>
             <li class="active">
-              <a href="#">
+              <a href="solicitudes/mis_solicitudes/">
                 <i class="fa fa-circle-o"></i> Completadas
               </a>
             </li>
             <li class="active">
-              <a href="#">
+              <a href="solicitudes/mis_solicitudes/">
                 <i class="fa fa-circle-o"></i> En proceso
               </a>
             </li>
             <li class="active">
-              <a href="#">
+              <a href="solicitudes/mis_solicitudes/">
                 <i class="fa fa-circle-o"></i> Rechazadas
               </a>
             </li>
@@ -149,10 +149,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=" "><i class="fa fa-circle-o"></i> Agregar Monitor</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Listar Monitores</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Agregar Usuario</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Listar Usuarios</a></li>
+            <li><a href="/usuarios/nuevo/"><i class="fa fa-circle-o"></i> Nuevo usuario</a></li>
+            <li><a href="/usuarios/lista_usuarios/"><i class="fa fa-circle-o"></i> Listar Monitores</a></li>
+            <li><a href="/usuarios/lista_usuarios/"><i class="fa fa-circle-o"></i> Listar Usuario</a></li>
           </ul>
         </li>
         <li>
@@ -176,14 +175,8 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Bienvenido
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      </ol>
-    </section>
+{% block usuario%}
+{% endblock usuario%}
 <!-- Aqui contenido principal *******************************************************************************************-->
 {% block contenido %}
 

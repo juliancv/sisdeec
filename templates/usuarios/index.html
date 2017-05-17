@@ -1,2 +1,13 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% block usuario%}
+
+<section class="content-header">
+  <h1>
+    Bienvenido @ {{usuario}}
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Inicio</a></li>
+  </ol>
+</section>
+{% endblock usuario%}

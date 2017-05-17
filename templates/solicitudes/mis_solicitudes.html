@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% block contenido %}
+
+<section class="content">
+  {% if actividades%}
+    <div class="box">
+      <div class="col-md-10 col-md-offset-1">
+      <div class="box-header">
+        <br>
+        <h2 class="box-title" align="center">Actividades</h2>
+      </div>
+
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table id="listar_actividades" class="table table-striped table-responsive table-bordered table-hover">
+          <thead>
+            <tr>
+              <td class="text-center">TITULO</td>
+              <td class="text-center">RESUMEN</td>
+              <td class="text-center">FECHA DE SOLICITUD</td>
+              <td class="text-center">EDITAR</td>
+              <td class="text-center">VER DETALLES</td>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for actividad in actividades %}
+            <tr>
+              <td>{{actividad.titulo}}</td>
+              <td>{{actividad.resumen}}</td>
+              <td>{{actividad.fecha_solici}}</td>
+              <td class="text-center">
+              <a href="/solicitudes/{{actividad.act_id}}/editar/"><span class="glyphicon glyphicon-pencil"></span></a>
+              </td>
+              <td class="text-center">
+              <a href="/solicitudes/{{actividad.act_id}}/detalles/"><span class="glyphicon glyphicon-eye-open"></span></a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    {% else %}
+
+    <div class="alert alert-warning">
+      <span class="glyphicon glyphicon-warning-sign"> No tiene actividades  disponibles</span>
+    </div>
+  {% endif %}
+
+<!-- /.box -->
+</div>
+</section>
+
+
+
+
+<script src="{% static 'plantilla/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'plantilla/plugins/datatables/dataTables.bootstrap.min.js' %}"></script>
+<script>
+  $(function () {
+    $('#listar_actividades').DataTable();
+    $('#listar_actividades').DataTable();
+  });
+</script>
+{% endblock contenido %}

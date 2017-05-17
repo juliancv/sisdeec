@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% block contenido %}
+
+<div class="box">
+           <div class="box-header">
+             <h3 class="box-title">Detalles Solicitud</h3>
+           </div>
+           <!-- /.box-header -->
+           <div class="box-body no-padding">
+             <table class="table table-condensed">
+               <tr>
+                 <th>Titulo</th>
+                 <th>{{actividad.titulo}}</th>
+               </tr>
+               <tr>
+                 <th>Resumen</th>
+                 <th>{{actividad.resumen}}</th>
+               </tr>
+               <tr>
+                 <th>Responsable</th>
+                 <th>{{actividad.responsable_id}}</th>
+               </tr>
+               <tr>
+                 <th>Prioridad</th>
+                 <th>{{actividad.prioridad}}</th>
+               </tr>
+               <tr>
+                 <th>Estado</th>
+                 <th>{{actividad.estado}}</th>
+               </tr>
+               <tr>
+                 <th>Fecha de solicitud</th>
+                 <th>{{actividad.fecha_solici}}</th>
+               </tr>
+               <tr>
+                 <th>Fecha de finalizacion</th>
+                 <th>{{actividad.fecha_final}}</th>
+               </tr>
+               <tr>
+                 <th>Comentarios</th>
+                 <th>{{actividad.comentarios}}</th>
+               </tr>
+
+             </table>
+
+           </div>
+
+           <!-- /.box-body -->
+         </div>
+         <div class="btn-group btn-group-justified"><center>
+          <a href = "/solicitudes/{{id}}/editar/" ><button type="button" class="btn btn-primary "><b>Editar</b></button></a>
+          <a href = "/solicitudes/mis_solicitudes/" ><button type="button" class="btn btn-primary "><b>Atras</b></button></a>
+        </center></div>
+        <!-- /.box -->
+       </div>
+
+{% endblock contenido %}
