@@ -6,9 +6,10 @@
 <section class="content">
     <div class="container">
       <div class="col-lg-10 col-lg-offset-1">
+        <div class="box box-primary">
           <div class="ibox float-e-margins">
               <div class="ibox-title">
-                  <h2>Editar Solicitud</h2>
+                  <h2>&nbsp;&nbsp;&nbsp;Editar Solicitud</h2>
               </div>
 
               <div class="ibox-content">
@@ -30,9 +31,9 @@
                           <div class="form-group">
                                 <label class="control-label" for="id_responsable">Responsable</label>
 
-                                <select id = "id_responsable" name="id_reponsable", class= "form-control">
+                                <select id = "id_responsable" name="responsable", class= "form-control">
                                     {% for responsable in responsables %}
-                                    <option value = {{responsable.identificacion}}> {{responsable}}</option>
+                                    <option value = {{responsable.identificacion}}> {{responsable.nombres}}</option>
                                     {% endfor %}
                                 </select>
 
@@ -49,8 +50,8 @@
 
                           <div class="form-group">
                             <label class = "control-label" for = "id_comentarios"  >Comentarios </label>
-                            {{ actividad_form_editar.comentarios}}
-                          </div>
+                              {{ actividad_form_editar.comentarios}}
+                            </div>
 
                           <center> {% bootstrap_button "Actualizar" button_type="submit" button_class="btn-primary"%} </center>
 
@@ -62,6 +63,7 @@
           </div>
       </div>
     </div>
+  </div>
   </section>
 
 {% endblock contenido %}

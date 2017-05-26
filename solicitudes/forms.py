@@ -28,12 +28,21 @@ class SolicitudEditForm(forms.Form):
     OPT_PRIORIDAD = (('1','1'),('2','2'),('3','3'),('4','4'),('5','5'))
     OPT_ESTADO = (('Nuevo', 'Nuevo'),('Rechazado', 'Rechazado'))
 
+    inicial = "Hola"
+
     titulo       = forms.CharField(required = True)
     resumen      = forms.CharField(widget = forms.Textarea, required = True)
-    responsable  = forms.ChoiceField( required = True, widget = forms.Select)
+    responsable  = forms.ChoiceField( required = True, widget = forms.Select, choices = [per.nombres  for per in Persona.objects.all()])
     prioridad    = forms.ChoiceField( required = True, widget = forms.Select, choices = OPT_PRIORIDAD)
     estado       = forms.ChoiceField( required = True, widget = forms.Select, choices = OPT_ESTADO)
-    comentarios  = forms.CharField(widget = forms.Textarea, required = True)
+    comentarios  = forms.CharField(widget = forms.Textarea(), required = True,)
+
+    responsable.widget.attrs.update({
+                                'id':'id_responsable',
+                                'class':'form-control',
+                                'name':'responsable',
+                                'type': 'select'
+    })
 
     titulo.widget.attrs.update({
                                 'id':'id_titulo',

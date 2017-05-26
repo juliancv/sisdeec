@@ -70,8 +70,10 @@ class EditarActividad(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(EditarActividad, self).get_context_data(**kwargs)
-        context['actividad'] = Actividad.objects.get(act_id = kwargs['id'])
-        context['actividad_form_editar'] = SolicitudEditForm()
+        actividad = Actividad.objects.get(act_id = kwargs['id'])
+        context['actividad'] = actividad
+        #f = cadastroForm(initial={'tipo_cadastro': 'Initial Value!'})
+        context['actividad_form_editar'] = SolicitudEditForm(initial = {'comentarios': actividad.comentarios})
 
         usuarios = User.objects.all().filter(groups = 1)
 
@@ -84,10 +86,15 @@ class EditarActividad(TemplateView):
     def post(self, request, *args, **kwargs):
         context = super(EditarActividad, self).get_context_data(**kwargs)
         actividad = Actividad.objects.get(act_id = kwargs['id'])
+
         context['actividad'] = actividad
-        #responsable = User.objects.filter(Persona.nombres = request.POST['responsable'])
+
         actividad.prioridad = request.POST['prioridad']
         actividad.comentarios = request.POST['comentarios']
+        actividad.estado = request.POST['estado']
+        responsable_id = request.POST['responsable']
+        responsable = User.objects.filter(username = responsable_id)
+        actividad.responsable_id = responsable[0]
 
         actividad.save()
 
@@ -98,7 +105,16 @@ class DetallesActividad(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(DetallesActividad, self).get_context_data(**kwargs)
-        context['actividad'] = Actividad.objects.get(act_id = kwargs['id'])
+        actividad = Actividad.objects.get(act_id = kwargs['id'])
+        context['actividad'] = actividad
         context['id']        = kwargs['id']
+
+        try:
+
+            context['responsable'] = Persona.objects.filter(usuario = actividad.responsable_id)[0]
+
+        except:
+
+            context['responsable'] = 'No asignado'
 
         return context

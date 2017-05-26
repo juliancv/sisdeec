@@ -130,13 +130,8 @@ class PersonaCreateView(TemplateView):
 class LoginView(TemplateView):
     template_name = "login.html"
 
-    print("$$$$$$$$$$$$")
-
     def get_context_data(self, **kwargs):
         context = super(LoginView, self).get_context_data(**kwargs)
-
-        print("$$$$$$$$$$$$")
-        print(context)
 
     def post(self, request, *args, **kwargs):
         context = super(LoginView, self).get_context_data(**kwargs)
@@ -145,9 +140,6 @@ class LoginView(TemplateView):
         password = request.POST.get('password')
 
         user = authenticate(username = username, password = password)
-
-        print ("########################")
-        print (user.username)
 
         if user is not None:
             login(request, user)
@@ -167,3 +159,49 @@ class ListarUsuarios(TemplateView):
         context['usuarios'] = usuarios
 
         return context
+
+class PersonaDetalles(TemplateView):
+    template_name = "usuarios/detalles.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(PersonaDetalles, self).get_context_data(**kwargs)
+
+        persona = Persona.objects.all().filter(usuario = self.request.user)
+        context['persona'] = persona[0]
+
+        return context
+
+class PersonaEditar(TemplateView):
+    template_name = "usuarios/editar.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(PersonaEditar, self).get_context_data(**kwargs)
+
+        persona = Persona.objects.all().filter(usuario = self.request.user)
+        form = PersonaForm(initial = {'nombres' : persona[0].nombres,
+                                      'apellidos' : persona[0].apellidos,
+                                      'area_oficina': persona[0].area_oficina,
+                                      'telefono' : persona[0].telefono,
+                                      'correo' : persona[0].correo })
+
+        context['persona'] = persona[0]
+        context['persona_form'] = form
+
+        return context
+
+    def post(self, request, *args, **kwargs):
+        context =  super(PersonaEditar, self).get_context_data(**kwargs)
+
+        persona = Persona.objects.all().filter(usuario = self.request.user)[0]
+
+        persona.correo = request.POST['correo']
+        persona.telefono = request.POST['telefono']
+        persona.nombres = request.POST['nombres']
+        persona.apellidos = request.POST['apellidos']
+        persona.area_oficina = request.POST['area_oficina']
+
+        persona.save()
+
+        context['error'] = 'Verificar informacion'
+
+        return HttpResponseRedirect('/usuarios/detalles')

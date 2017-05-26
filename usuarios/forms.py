@@ -29,7 +29,7 @@ class PersonaForm(forms.Form):
                   ('DEEC', u'DEEC'),)
     OPT_USR = (('General', u'General'),('Monitor', u'Monitor'))
 
-    nombres         = forms.CharField( required = True )
+    nombres         = forms.CharField( required = True)
     apellidos       = forms.CharField( required = True )
     identificacion  = forms.IntegerField( required = True )
     telefono        = forms.IntegerField( required = True )

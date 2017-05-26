@@ -22,6 +22,8 @@ from django.contrib.auth import views as auth_views
 urlpatterns_usuarios = [
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='auth_logout'),
     url(r'nuevo/$', PersonaCreateView.as_view(), name = 'nuevo_usuario'),
+    url(r'^detalles/$', PersonaDetalles.as_view(), name = 'detalles'),
+    url(r'^editar/$', PersonaEditar.as_view(), name = 'editar'),
     url(r'lista_usuarios/$', ListarUsuarios.as_view(), name = 'lista_usuarios'),
     url(r'/$', Home.as_view(), name = 'home'),
 
