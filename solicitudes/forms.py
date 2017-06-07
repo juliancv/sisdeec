@@ -32,7 +32,11 @@ class SolicitudEditForm(forms.Form):
 
     titulo       = forms.CharField(required = True)
     resumen      = forms.CharField(widget = forms.Textarea, required = True)
-    responsable  = forms.ChoiceField( required = True, widget = forms.Select, choices = [per.nombres  for per in Persona.objects.all()])
+    try:
+        responsable  = forms.ChoiceField( required = True, widget = forms.Select, choices = [per.nombres  for per in Persona.objects.all()])
+    except:
+        responsable  = forms.ChoiceField( required = True, widget = forms.Select)
+        
     prioridad    = forms.ChoiceField( required = True, widget = forms.Select, choices = OPT_PRIORIDAD)
     estado       = forms.ChoiceField( required = True, widget = forms.Select, choices = OPT_ESTADO)
     comentarios  = forms.CharField(widget = forms.Textarea(), required = True,)

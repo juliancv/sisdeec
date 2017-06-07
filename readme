@@ -1,8 +1,22 @@
-db = sisdeec
+credenciales para la base de datos
+
+db  name = sisdeec
 user = sisdeec
 pass = sisdeec
+
+requerimientos del sistema
+
+Los siguientes paquetes deben ser instalados en el sistema 
+
 django = 1.10.4
 postgres = 9.4
+pip3
+
+Los siguientes modulos se deben incluir por medio de PIP3
+
+psycopg2
+django-bootstrap3
+
 
 *crear super usuario
 
